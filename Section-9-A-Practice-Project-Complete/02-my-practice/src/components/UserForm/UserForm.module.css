@@ -1,0 +1,17 @@
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-weight: bold;
+    font-size: 14px;
+    padding-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid #dfdedf;
+    padding: 5px;
+}
