@@ -13,36 +13,40 @@ const UserForm = (props) => {
 
     const submitHandler = event => {
         event.preventDefault();
-        console.log(userForm);
+        props.onAddNewUser(userForm);
     }
 
-    const changeValueHandler = async event => {
+    const changeValueHandler = event => {
         const {name, value} = event.target;
-        await setUserForm((prevState) => {
+        setUserForm((prevState) => {
             return {
                 ...prevState,
                 [name]: value
             }
         });
-        // setTimeout(() => console.log(userForm), 4000);
-        console.log(userForm);
+    }
+
+    const resetHandler = event => {
+        setUserForm(initialForm);
     }
 
     return (
-        <Card>
-            <form>
-               <div className={classes['input-group']}>
-                   <label>Username</label>
-                   <input type="text" value={userForm.username} name="username" onChange={changeValueHandler}/>
-               </div>
-                <div className={classes['input-group']}>
-                    <label>Age (Years)</label>
-                    <input type="number" value={userForm.age} name="age" onChange={changeValueHandler} />
-                </div>
-                <Button type="submit" className="button" title="Add User" onClick={submitHandler}/>
-                <Button type="reset" style={{marginLeft: "10px"}} className="button" title="Reset"/>
-            </form>
-        </Card>
+        <div>
+            <Card>
+                <form>
+                   <div className={classes['input-group']}>
+                       <label>Username</label>
+                       <input type="text" value={userForm.username} name="username" onChange={changeValueHandler}/>
+                   </div>
+                    <div className={classes['input-group']}>
+                        <label>Age (Years)</label>
+                        <input type="number" value={userForm.age} name="age" onChange={changeValueHandler} />
+                    </div>
+                    <Button type="submit" className="button" title="Add User" onClick={submitHandler}/>
+                    <Button type="reset" style={{marginLeft: "10px"}} onClick={resetHandler} className="button" title="Reset"/>
+                </form>
+            </Card>
+        </div>
     );
 }
 
